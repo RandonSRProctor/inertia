@@ -1,0 +1,19 @@
+body {
+    margin: auto;
+    width: 500px;
+}
+
+.container {
+    
+    display: flex;
+}
+
+.container div {
+    width: 100px;
+    height: 100px;
+}
+
+div {
+    border: solid black 2.5px;
+    
+}
