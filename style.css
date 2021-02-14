@@ -1,25 +1,48 @@
 body {
+    padding: 10px;
     margin: auto;
-    width: 900px;
+    width: 90vw;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
-.container {
-    
+h1, h3 {
+    padding-left: 2.5px;
+}
+
+.poolContainer {
+    border: solid 2.5px gray;
+    border-radius: 5px;
     display: flex;
+    padding: 5px;
 }
 
-.container div {
-    width: 100px;
-    height: 100px;
+.poolContainer div {
+    width: 10vw;
+    height: 50vh;
+}
+
+.buttonContainer {
+    display: flex;
+    padding: 30px;
+}
+
+.buttonContainer button{
+    margin: auto;
+    background-color: white;
+    font-size: medium;
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    padding: 1vw;
 }
 
 div {
-    border: solid black 2.5px;
+    border: none;
     
 }
 
-.outMomentum {
-    background-color: aquamarine;
+.outwardMomentum {
+    background-color: #00ffff;
 }
 
 .leftMomentum {
@@ -28,4 +51,9 @@ div {
 
 .rightMomentum {
     background: linear-gradient(to left, #00ffff 0%, #ffffff 100%);
+}
+
+.hasEnergy {
+    border-left: solid 2.5px #00ffff;
+    border-right: solid 2.5px #00ffff;
 }
