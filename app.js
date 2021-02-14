@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Up next:
 
+Make favicon
 
 I should set goals for this first version.  It's essentially done, but I have 2.0, 3.0, and 4.0 to go.
 
