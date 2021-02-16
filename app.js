@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let squares = Array.from(document.querySelectorAll('.poolContainer div'))
     let timeInterval = setInterval(moveTimeForward, speedOfTime)
 
+    initializeSquares()
     assignEventListenersToSquares()
     assignEventListenerToTimeToggleButton()
     assignEventListenerToSpeedButton()
@@ -44,20 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             else if (currentSquare.momentum === 'left' &&
-                     currentSquare.isDone === false &&
-                     index != leftEdgeCase) {
+                     currentSquare.isDone === false) {
 
-                pushLeft(squareToTheLeft)
-                settleSquare(currentSquare)
+                if (index != leftEdgeCase) {
+                    pushLeft(squareToTheLeft)
+                }
+                    settleSquare(currentSquare)
             }
 
             else if (currentSquare.momentum === 'right' &&
                      currentSquare.lastUpdated != presentTime &&
-                     currentSquare.isDone === false &&
-                     index != rightEdgeCase) {
-
-                pushRight(squareToTheRight)
-                settleSquare(currentSquare)
+                     currentSquare.isDone === false) {
+                
+                if (index != rightEdgeCase) {
+                    pushRight(squareToTheRight)
+                }
+                    settleSquare(currentSquare)
             }
         }
 
@@ -65,6 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         incrementTime()
         
+    }
+
+
+    //-----Only Functions Below This Line-----//
+
+
+
+    function initializeSquares() {
+        squares.forEach( square => {
+            settleSquare(square)
+        })
     }
 
     function assignEventListenersToSquares() {
@@ -125,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function pushRight(squareToBePushed) {
         squareToBePushed.classList.remove('leftMomentum')
         squareToBePushed.classList.remove('outwardMomentum')
+        squareToBePushed.classList.remove('noEnergy')
         squareToBePushed.classList.add('rightMomentum')
         squareToBePushed.momentum = 'right'
         squareToBePushed.lastUpdated = presentTime
@@ -135,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function pushLeft(squareToBePushed) {
         squareToBePushed.classList.remove('rightMomentum')
         squareToBePushed.classList.remove('outwardMomentum')
+        squareToBePushed.classList.remove('noEnergy')
         squareToBePushed.classList.add('leftMomentum')
         squareToBePushed.momentum = 'left'
         squareToBePushed.lastUpdated = presentTime
@@ -145,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function pushOut(squareToBePushed) {
         squareToBePushed.classList.remove('leftMomentum')
         squareToBePushed.classList.remove('rightMomentum')
+        squareToBePushed.classList.remove('noEnergy')
         squareToBePushed.classList.add('outwardMomentum')
         squareToBePushed.momentum = 'outward'
         squareToBePushed.lastUpdated = presentTime
@@ -157,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squareToBeSettled.lastUpdated = presentTime
         squareToBeSettled.isDone = true
         squareToBeSettled.classList.remove('hasEnergy')
+        squareToBeSettled.classList.add('noEnergy')
         squareToBeSettled.momentum = 'none'
     }
 
@@ -186,12 +204,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 Up next:
 
-Make favicon
+-Make favicon
+-Add Readme.MD
 
-I should set goals for this first version.  It's essentially done, but I have 2.0, 3.0, and 4.0 to go.
-
-Also: MAKE A README.MD!!!!
-
-PROCESS EATERS TO BE AWARE OF:
-
+Versions:
+1.0 : MVP Simply create a system in which a touch creates a 1-dimensional ripple effect
+2.0 : Add Decay for ripples so that they fade away and become "calm" after a certain time has passed
+3.0 : Add Rebounding from outside of pool
+4.0 : Add collision dynamics so that two ripples can pass through each other rather than one defeating
+5.0 : Create y-axis with all abilities of x-axis
+6.0 : Fill in diagonal space in between x and y axis in diamond formation
 */
