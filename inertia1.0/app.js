@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let speedOfTime = 25
+    let speedOfTime = 50
     let presentTime = 0
     let stopTime = false
     let squares = Array.from(document.querySelectorAll('.poolContainer div'))
@@ -126,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         speedOfTimeButton.addEventListener('click', (event) => {
             clearInterval(timeInterval)
-            if (speedOfTime === 25) {
-                speedOfTime = 75
+            if (speedOfTime === 50) {
+                speedOfTime = 100
                 speedOfTimeButton.innerHTML = 'Speed Up Time'
                 event.target.style.backgroundColor = 'lightskyblue'
-            } else if (speedOfTime === 75) {
-                speedOfTime = 25
+            } else if (speedOfTime === 50) {
+                speedOfTime = 100
                 speedOfTimeButton.innerHTML = 'Slow Time'
                 event.target.style.backgroundColor = 'white'
             }

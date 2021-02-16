@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        //if (currentSquare.colorFade > 0) {currentSquare.colorFade--}
+
         if (stopTime === true) clearInterval(timeInterval)
         
         incrementTime()
@@ -156,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squareToBePushed.momentum = 'right'
         squareToBePushed.lastUpdated = presentTime
         squareToBePushed.isDone = false
+        squareToBePushed.colorFade = 10
     }
     
     function pushLeft(squareToBePushed) {
@@ -166,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squareToBePushed.momentum = 'left'
         squareToBePushed.lastUpdated = presentTime
         squareToBePushed.isDone = false
+        squareToBePushed.colorFade = 10
     }
 
     function pushOut(squareToBePushed) {
@@ -176,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squareToBePushed.lastUpdated = presentTime
         squareToBePushed.classList.add('hasEnergySquare')
         squareToBePushed.isDone = false
-
+        squareToBePushed.colorFade = 10
     }
 
     function settleSquare(squareToBeSettled) {
