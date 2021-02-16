@@ -1,16 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let speedOfTime = 50
+    let speedOfTime = 25
     let presentTime = 0
     let stopTime = false
     let squares = Array.from(document.querySelectorAll('.poolContainer div'))
     let timeInterval = setInterval(moveTimeForward, speedOfTime)
 
     initializeSquares()
-    assignEventListenersToSquares()
-    assignEventListenerToTimeToggleButton()
-    assignEventListenerToSpeedButton()
-    assignEventListenerToResetButton()
+    assignAllEventListeners()
 
     function moveTimeForward() {
 
@@ -71,6 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+
+    //-----App is above this line-----//
+
+
+
+
     //-----Only Functions Below This Line-----//
 
 
@@ -79,6 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
         squares.forEach( square => {
             settleSquare(square)
         })
+    }
+
+    function assignAllEventListeners() {
+        assignEventListenersToSquares()
+        assignEventListenerToTimeToggleButton()
+        assignEventListenerToSpeedButton()
+        assignEventListenerToResetButton()
     }
 
     function assignEventListenersToSquares() {
@@ -94,15 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let timeToggleButton = document.querySelector('.timeToggle')
 
-        timeToggleButton.addEventListener('click', () => {
+        timeToggleButton.addEventListener('click', (event) => {
             if (stopTime === false) {
                 stopTime = true
                 timeToggleButton.innerHTML = 'Unfreeze Time'
+                event.target.style.backgroundColor = 'lightskyblue'
                 console.log('You have stopped time.  Are you a wizard?')
             } else {
                 stopTime = false
                 timeInterval = setInterval(moveTimeForward, speedOfTime)
                 timeToggleButton.innerHTML = 'Freeze Time'
+                event.target.style.backgroundColor = 'white'
                 console.log('Time has started again!')
             }
         })
@@ -112,18 +124,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let speedOfTimeButton = document.querySelector('.speedOfTimeToggle')
 
-        speedOfTimeButton.addEventListener('click', () => {
-            if (speedOfTime === 50) {
-                speedOfTime = 500
-                clearInterval(timeInterval)
-                timeInterval = setInterval(moveTimeForward, speedOfTime)
+        speedOfTimeButton.addEventListener('click', (event) => {
+            clearInterval(timeInterval)
+            if (speedOfTime === 25) {
+                speedOfTime = 75
                 speedOfTimeButton.innerHTML = 'Speed Up Time'
-            } else if (speedOfTime === 500) {
-                speedOfTime = 50
-                clearInterval(timeInterval)
-                timeInterval = setInterval(moveTimeForward, speedOfTime)
+                event.target.style.backgroundColor = 'lightskyblue'
+            } else if (speedOfTime === 75) {
+                speedOfTime = 25
                 speedOfTimeButton.innerHTML = 'Slow Time'
+                event.target.style.backgroundColor = 'white'
             }
+            timeInterval = setInterval(moveTimeForward, speedOfTime)
         })
     }
 
@@ -137,35 +149,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function pushRight(squareToBePushed) {
-        squareToBePushed.classList.remove('leftMomentum')
-        squareToBePushed.classList.remove('outwardMomentum')
-        squareToBePushed.classList.remove('noEnergy')
+        removeMomentumClasses(squareToBePushed)
+        squareToBePushed.classList.remove('noEnergySquare')
+        squareToBePushed.classList.add('hasEnergySquare')
         squareToBePushed.classList.add('rightMomentum')
         squareToBePushed.momentum = 'right'
         squareToBePushed.lastUpdated = presentTime
-        squareToBePushed.classList.add('hasEnergy')
         squareToBePushed.isDone = false
     }
     
     function pushLeft(squareToBePushed) {
-        squareToBePushed.classList.remove('rightMomentum')
-        squareToBePushed.classList.remove('outwardMomentum')
-        squareToBePushed.classList.remove('noEnergy')
+        removeMomentumClasses(squareToBePushed)
+        squareToBePushed.classList.remove('noEnergySquare')
+        squareToBePushed.classList.add('hasEnergySquare')
         squareToBePushed.classList.add('leftMomentum')
         squareToBePushed.momentum = 'left'
         squareToBePushed.lastUpdated = presentTime
-        squareToBePushed.classList.add('hasEnergy')
         squareToBePushed.isDone = false
     }
 
     function pushOut(squareToBePushed) {
-        squareToBePushed.classList.remove('leftMomentum')
-        squareToBePushed.classList.remove('rightMomentum')
-        squareToBePushed.classList.remove('noEnergy')
+        removeMomentumClasses(squareToBePushed)
+        squareToBePushed.classList.remove('noEnergySquare')
         squareToBePushed.classList.add('outwardMomentum')
         squareToBePushed.momentum = 'outward'
         squareToBePushed.lastUpdated = presentTime
-        squareToBePushed.classList.add('hasEnergy')
+        squareToBePushed.classList.add('hasEnergySquare')
         squareToBePushed.isDone = false
 
     }
@@ -173,16 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function settleSquare(squareToBeSettled) {
         squareToBeSettled.lastUpdated = presentTime
         squareToBeSettled.isDone = true
-        squareToBeSettled.classList.remove('hasEnergy')
-        squareToBeSettled.classList.add('noEnergy')
+        squareToBeSettled.classList.remove('hasEnergySquare')
+        squareToBeSettled.classList.add('noEnergySquare')
         squareToBeSettled.momentum = 'none'
     }
 
     function resetSquare(squareToBeReset) {
-        squareToBeReset.classList.remove('leftMomentum')
-        squareToBeReset.classList.remove('rightMomentum')
-        squareToBeReset.classList.remove('outwardMomentum')
+        removeMomentumClasses(squareToBeReset)
         settleSquare(squareToBeReset)
+    }
+
+    function removeMomentumClasses(squareWithMomentumClass) {
+        squareWithMomentumClass.classList.remove('leftMomentum')
+        squareWithMomentumClass.classList.remove('rightMomentum')
+        squareWithMomentumClass.classList.remove('outwardMomentum')
     }
 
     function incrementTime() {
