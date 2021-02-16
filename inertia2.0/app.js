@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let speedOfTime = 25
+    let speedOfTime = 40
     let presentTime = 0
     let stopTime = false
     let squares = Array.from(document.querySelectorAll('.poolContainer div'))
@@ -59,9 +59,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                     settleSquare(currentSquare)
             }
+
+            
+            
+            let numberBasedColor
+
+            switch(currentSquare.colorFade / 3) {
+                case 15: {numberBasedColor = '#008080'} break;
+                case 14: {numberBasedColor = '#009999'} break;
+                case 13: {numberBasedColor = '#00b3b3'} break;
+                case 12: {numberBasedColor = '#00cccc'} break;
+                case 11: {numberBasedColor = '#00e6e6'} break;
+                case 10: {numberBasedColor = '#00ffff'} break;
+                case 9:  {numberBasedColor = '#1affff'} break;
+                case 8:  {numberBasedColor = '#99ffff'} break;
+                case 7:  {numberBasedColor = '#99ffff'} break;
+                case 5:  {numberBasedColor = '#b3ffff'} break;
+                case 6:  {numberBasedColor = '#b3ffff'} break;
+                case 4:  {numberBasedColor = '#ccffff'} break;
+                case 3:  {numberBasedColor = '#ccffff'} break;
+                case 2:  {numberBasedColor = '#e6ffff'} break;
+                case 1:  {numberBasedColor = '#e6ffff'} break;
+                case 0:  {numberBasedColor = '#ffffff'} break;
+            }
+
+            
+            currentSquare.style.backgroundColor = numberBasedColor
+            
+            
+
+            if (currentSquare.colorFade > 0) {currentSquare.colorFade--}
+           
         }
 
-        //if (currentSquare.colorFade > 0) {currentSquare.colorFade--}
+        
 
         if (stopTime === true) clearInterval(timeInterval)
         
@@ -97,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0 ; i < squares.length ; i++) {
             squares[i].addEventListener('click', (event) => {
                 const square = event.target
+                square.style = 'navy'
                 pushOut(square)
             })
         }
@@ -128,12 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         speedOfTimeButton.addEventListener('click', (event) => {
             clearInterval(timeInterval)
-            if (speedOfTime === 25) {
+            if (speedOfTime === 40) {
                 speedOfTime = 75
                 speedOfTimeButton.innerHTML = 'Speed Up Time'
                 event.target.style.backgroundColor = 'lightskyblue'
             } else if (speedOfTime === 75) {
-                speedOfTime = 25
+                speedOfTime = 40
                 speedOfTimeButton.innerHTML = 'Slow Time'
                 event.target.style.backgroundColor = 'white'
             }
@@ -153,23 +185,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function pushRight(squareToBePushed) {
         removeMomentumClasses(squareToBePushed)
         squareToBePushed.classList.remove('noEnergySquare')
-        squareToBePushed.classList.add('hasEnergySquare')
+        squareToBePushed.classList.add('hasRightEnergySquare')
         squareToBePushed.classList.add('rightMomentum')
         squareToBePushed.momentum = 'right'
         squareToBePushed.lastUpdated = presentTime
         squareToBePushed.isDone = false
-        squareToBePushed.colorFade = 10
+        squareToBePushed.colorFade = 45
     }
     
     function pushLeft(squareToBePushed) {
         removeMomentumClasses(squareToBePushed)
         squareToBePushed.classList.remove('noEnergySquare')
-        squareToBePushed.classList.add('hasEnergySquare')
+        squareToBePushed.classList.add('hasLeftEnergySquare')
         squareToBePushed.classList.add('leftMomentum')
         squareToBePushed.momentum = 'left'
         squareToBePushed.lastUpdated = presentTime
         squareToBePushed.isDone = false
-        squareToBePushed.colorFade = 10
+        squareToBePushed.colorFade = 45
     }
 
     function pushOut(squareToBePushed) {
@@ -180,13 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
         squareToBePushed.lastUpdated = presentTime
         squareToBePushed.classList.add('hasEnergySquare')
         squareToBePushed.isDone = false
-        squareToBePushed.colorFade = 10
+        squareToBePushed.colorFade = 45
     }
 
     function settleSquare(squareToBeSettled) {
         squareToBeSettled.lastUpdated = presentTime
         squareToBeSettled.isDone = true
         squareToBeSettled.classList.remove('hasEnergySquare')
+        squareToBeSettled.classList.remove('hasLeftEnergySquare')
+        squareToBeSettled.classList.remove('hasRightEnergySquare')
         squareToBeSettled.classList.add('noEnergySquare')
         squareToBeSettled.momentum = 'none'
     }

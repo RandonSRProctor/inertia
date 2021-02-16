@@ -22,12 +22,29 @@ h1, h3 {
 }
 
 .hasEnergySquare {
-    width: calc((10vw) - 2px);
-    border-left: solid lightskyblue 1px;
-    border-right: solid lightskyblue 1px;
+
+    width: 10vw;
+    height: 50vh;
+    /* width: calc((10vw) - 2px);
+    border-left: solid white 1px;
+    border-right: solid white 1px;
     border-top: none;
     border-bottom: none;
+    height: 50vh; */
+}
+
+.hasLeftEnergySquare {
+    width: 10vw;
     height: 50vh;
+    background: linear-gradient(to left, #00b3b3 0%, #ffffff 100%);
+    /* border: solid black 5px; */
+}
+
+.hasRightEnergySquare {
+    width: 10vw;
+    height: 50vh;
+    background: linear-gradient(to left, #ffffff 0%, #00b3b3 100%);
+    /* border: solid black 5px; */
 }
 
 .buttonContainer {
@@ -47,14 +64,14 @@ h1, h3 {
 }
 
 .outwardMomentum {
-    background-color: #00ffff;
+    background-color: #00b3b3;
 }
 
-.leftMomentum {
+/* .leftMomentum {
     background: linear-gradient(to left, #ffffff 0%, #00ffff 100%);
 }
 
 .rightMomentum {
     background: linear-gradient(to left, #51f8f8 0%, #ffffff 100%);
-}
+} */
 
