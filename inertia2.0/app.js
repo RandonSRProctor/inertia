@@ -60,39 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     settleSquare(currentSquare)
             }
 
+                 
+            currentSquare.style.backgroundColor = determineColor(currentSquare.colorFade)
             
-            
-            let numberBasedColor
-
-            switch(currentSquare.colorFade / 3) {
-                case 15: {numberBasedColor = '#008080'} break;
-                case 14: {numberBasedColor = '#009999'} break;
-                case 13: {numberBasedColor = '#00b3b3'} break;
-                case 12: {numberBasedColor = '#00cccc'} break;
-                case 11: {numberBasedColor = '#00e6e6'} break;
-                case 10: {numberBasedColor = '#00ffff'} break;
-                case 9:  {numberBasedColor = '#1affff'} break;
-                case 8:  {numberBasedColor = '#99ffff'} break;
-                case 7:  {numberBasedColor = '#99ffff'} break;
-                case 5:  {numberBasedColor = '#b3ffff'} break;
-                case 6:  {numberBasedColor = '#b3ffff'} break;
-                case 4:  {numberBasedColor = '#ccffff'} break;
-                case 3:  {numberBasedColor = '#ccffff'} break;
-                case 2:  {numberBasedColor = '#e6ffff'} break;
-                case 1:  {numberBasedColor = '#e6ffff'} break;
-                case 0:  {numberBasedColor = '#ffffff'} break;
-            }
-
-            
-            currentSquare.style.backgroundColor = numberBasedColor
-            
-            
-
             if (currentSquare.colorFade > 0) {currentSquare.colorFade--}
            
         }
-
-        
 
         if (stopTime === true) clearInterval(timeInterval)
         
@@ -244,6 +217,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function announceBeginningOfCycle() {
         console.log(`Present time is now: ${presentTime}`)
+    }
+
+    function determineColor(colorFadeNumberGiven) {
+        let numberBasedColor
+            switch(colorFadeNumberGiven / 3) {
+                case 15: {numberBasedColor = '#008080'} break;
+                case 14: {numberBasedColor = '#009999'} break;
+                case 13: {numberBasedColor = '#00b3b3'} break;
+                case 12: {numberBasedColor = '#00cccc'} break;
+                case 11: {numberBasedColor = '#00e6e6'} break;
+                case 10: {numberBasedColor = '#00ffff'} break;
+                case 9:  {numberBasedColor = '#1affff'} break;
+                case 8:  {numberBasedColor = '#99ffff'} break;
+                case 7:  {numberBasedColor = '#99ffff'} break;
+                case 5:  {numberBasedColor = '#b3ffff'} break;
+                case 6:  {numberBasedColor = '#b3ffff'} break;
+                case 4:  {numberBasedColor = '#ccffff'} break;
+                case 3:  {numberBasedColor = '#ccffff'} break;
+                case 2:  {numberBasedColor = '#e6ffff'} break;
+                case 1:  {numberBasedColor = '#e6ffff'} break;
+                case 0:  {numberBasedColor = '#ffffff'} break;
+            }
+        return numberBasedColor
     }
 
 }) //THE BOTTOM OF THE BUCKET
