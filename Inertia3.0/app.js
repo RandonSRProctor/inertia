@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (index != leftEdgeCase) {
                     pushLeft(squareToTheLeft)
+                } else {
+                    pushRight(squareToTheRight)
                 }
                     settleSquare(currentSquare)
             }
@@ -56,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (index != rightEdgeCase) {
                     pushRight(squareToTheRight)
+                } else {
+                    pushLeft(squareToTheLeft)
                 }
                     settleSquare(currentSquare)
             }
