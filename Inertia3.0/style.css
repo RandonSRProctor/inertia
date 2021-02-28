@@ -58,3 +58,13 @@ h1, h3 {
 .outwardMomentum {
     background-color: #00b3b3;
 }
+
+.seeTheCode{
+    margin-top: 3vh;
+    text-align: center;
+}
+
+.seeTheCode a {
+    text-decoration: none;
+    color: gray;
+}
