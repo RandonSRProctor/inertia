@@ -12,7 +12,7 @@ A particularly high effort is oriented towards writing extremely readable code.
 
 The entire project is built with Vanilla JS, HTML, and CSS.
 
-Segmenting is performed using <div> tags and then spreading them across a finite container <div> using flexbox.
+Segmenting is performed using div tags and then spreading them across a finite container div using flexbox.
 
 ## Logic Explanation
 
@@ -27,8 +27,8 @@ In addition to DOM element field manipulation, the functions pass along class na
 
 ## Notes
 
-- This while in Production the project is not split into folders for ease in quickly publishing examples to codepen.io.  See this project and other demos here: https://codepen.io/randonsrproctor
+- While in Production the project is not split into folders for ease in quickly publishing examples to codepen.io.  See this project and other demos here: https://codepen.io/randonsrproctor
 
-- I'm not doing sprints or adding functionality at any set interval, this is a passion project.  I'm having great fun taking my time and playing around with JS concepts.
+- I'm not doing sprints or adding functionality at any set interval. This is a passion project; I'm having great fun taking my time and playing around with JS concepts.
 
--I absolutely encourage anyone to contact me to talk about the project.  Casual conversation and criticisms are welcome alike.
+- I absolutely encourage anyone to contact me to talk about the project.  Casual conversation and criticisms are welcome alike.
