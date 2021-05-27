@@ -1,0 +1,70 @@
+body {
+    padding: 10px;
+    margin: auto;
+    width: 90vw;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1, h3 {
+    padding-left: 2.5px;
+}
+
+.poolContainer {
+    border: solid 2.5px gray;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+}
+
+.noEnergySquare {
+    width: 10vw;
+    height: 50vh;
+}
+
+.hasEnergySquare {
+
+    width: 10vw;
+    height: 50vh;
+}
+
+.hasLeftEnergySquare {
+    width: 10vw;
+    height: 50vh;
+    background: linear-gradient(to left, #00b3b3 0%, #ffffff 100%);
+}
+
+.hasRightEnergySquare {
+    width: 10vw;
+    height: 50vh;
+    background: linear-gradient(to left, #ffffff 0%, #00b3b3 100%);
+}
+
+.buttonContainer {
+    display: flex;
+    padding: 30px;
+}
+
+
+.buttonContainer button{
+    margin: auto;
+    background-color: white;
+    font-size: larger;
+    border-radius: 5px;
+    width: 20vw;
+    height: 10vh;
+    padding: 1vw;
+}
+
+.outwardMomentum {
+    background-color: #00b3b3;
+}
+
+.seeTheCode{
+    margin-top: 3vh;
+    text-align: center;
+}
+
+.seeTheCode a {
+    text-decoration: none;
+    color: gray;
+}

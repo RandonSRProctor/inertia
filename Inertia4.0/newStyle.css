@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    margin: auto;
+    width: 90vw;
+}
+
+header {
+    margin: 1vh;
+}
+
+h1, h3 {
+    margin: .5vh;
+}
+
+.poolContainer {
+    padding: .5vw;
+    height: 50vh;
+    border: solid #666 .2rem;
+    border-radius: .3rem;
+    display: flex;
+}
+
+.poolContainer div {
+    flex-grow: 1;
+    border: solid black 1px;
+}
+
+
+
+.buttonContainer {
+    padding: 3vh 3vw;
+    display: flex;
+    
+}
+
+.buttonContainer button {
+    background: #fff;
+    padding: 5vh 3vw;
+    flex-grow: 1;
+    margin: 2vw;
+    border-radius: 5px;
+    font-size: larger;
+}
