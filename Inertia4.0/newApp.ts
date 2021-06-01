@@ -79,11 +79,15 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
     //Check for edgecases
     if (virtualSquare.index !== 0 && virtualSquare.index !== virtualPool.state.length - 1) {
         
+        const forceTransfered = .95
+        const forceRecoiled = .05
+
+
         //push force to left
         arrayOfResultingActions.push({
             index: virtualSquare.index - 1,
             type: 'INCREMENT',
-            forceMovingLeft: Math.floor(virtualSquare.forceMovingLeft * .75),
+            forceMovingLeft: Math.floor(virtualSquare.forceMovingLeft * forceTransfered),
             forceMovingRight: 0
         })
 
@@ -92,7 +96,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
             index: virtualSquare.index,
             type: 'INCREMENT',
             forceMovingLeft: 0,
-            forceMovingRight: Math.floor(virtualSquare.forceMovingLeft * .25)
+            forceMovingRight: Math.floor(virtualSquare.forceMovingLeft * forceRecoiled)
         })
 
         //push force to right
@@ -100,14 +104,14 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
             index: virtualSquare.index + 1,
             type: 'INCREMENT',
             forceMovingLeft: 0,
-            forceMovingRight: Math.floor(virtualSquare.forceMovingRight * .75)
+            forceMovingRight: Math.floor(virtualSquare.forceMovingRight * forceTransfered)
         })
 
         //recoil from force push to right
         arrayOfResultingActions.push({
             index: virtualSquare.index,
             type: 'INCREMENT',
-            forceMovingLeft: Math.floor(virtualSquare.forceMovingRight * .25),
+            forceMovingLeft: Math.floor(virtualSquare.forceMovingRight * forceRecoiled),
             forceMovingRight: 0
         })
     }
