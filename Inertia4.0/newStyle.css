@@ -22,10 +22,9 @@ h1, h3 {
 }
 
 .poolContainer {
-    padding: .5vw;
     height: 50vh;
     border: solid #666 .2rem;
-    border-radius: .3rem;
+    border-radius: .5rem;
     display: flex;
 }
 
