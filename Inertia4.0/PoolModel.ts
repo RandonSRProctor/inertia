@@ -15,11 +15,12 @@ class VirtualPool {
                 case 'DEDUCT':
                     newState[action.index].forceMovingLeft -= action.forceMovingLeft
                     newState[action.index].forceMovingRight -= action.forceMovingRight
+                    break
                     
                 case 'INCREMENT':
                     if(action.forceMovingLeft) { newState[action.index].forceMovingLeft += action.forceMovingLeft }
                     if(action.forceMovingRight) { newState[action.index].forceMovingRight += action.forceMovingRight }
-                    
+                    break
             }
         }
         this.state = [...newState]
