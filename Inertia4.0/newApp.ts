@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    let speedOfTime = 40
+    let speedOfTime = 55
     let presentTime = 0
     let stopTime = false
     let domPoolArray: any[]  = Array.from(document.querySelectorAll('.poolContainer div'))
@@ -69,6 +69,10 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
 
     let arrayOfResultingActions: Action[] = []
 
+    // Force Transfer Values
+    const forceTransfered = .85
+    const forceRecoiled = .15
+
     // Remove previous state of force
 
         arrayOfResultingActions.push({
@@ -79,8 +83,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
     //Check for edgecases
     if (virtualSquare.index !== 0 && virtualSquare.index !== virtualPool.state.length - 1) {
         
-        const forceTransfered = .95
-        const forceRecoiled = .05
+
 
 
         //push force to left
@@ -132,7 +135,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
             index: virtualSquare.index,
             type: 'INCREMENT',
             forceMovingLeft: 0,
-            forceMovingRight: Math.floor(virtualSquare.forceMovingLeft * .4)
+            forceMovingRight: Math.floor(virtualSquare.forceMovingLeft * forceTransfered)
         })
 
         //push force to right
@@ -140,14 +143,14 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
             index: virtualSquare.index + 1,
             type: 'INCREMENT',
             forceMovingLeft: 0,
-            forceMovingRight: Math.floor(virtualSquare.forceMovingRight * .85)
+            forceMovingRight: Math.floor(virtualSquare.forceMovingRight * forceTransfered)
         })
 
         //recoil from force push to right
         arrayOfResultingActions.push({
             index: virtualSquare.index,
             type: 'INCREMENT',
-            forceMovingLeft: Math.floor(virtualSquare.forceMovingRight * .15),
+            forceMovingLeft: Math.floor(virtualSquare.forceMovingRight * forceRecoiled),
             forceMovingRight: 0
         })
     }
@@ -159,7 +162,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
         arrayOfResultingActions.push({
             index: virtualSquare.index,
             type: 'INCREMENT',
-            forceMovingLeft: Math.floor(virtualSquare.forceMovingRight * .4),
+            forceMovingLeft: Math.floor(virtualSquare.forceMovingRight * forceTransfered),
             forceMovingRight: 0
         })
 
@@ -167,7 +170,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
         arrayOfResultingActions.push({
             index: virtualSquare.index - 1,
             type: 'INCREMENT',
-            forceMovingLeft: Math.floor(virtualSquare.forceMovingLeft * .85),
+            forceMovingLeft: Math.floor(virtualSquare.forceMovingLeft * forceTransfered),
             forceMovingRight: 0
         })
 
@@ -176,7 +179,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
             index: virtualSquare.index,
             type: 'INCREMENT',
             forceMovingLeft: 0,
-            forceMovingRight: Math.floor(virtualSquare.forceMovingLeft * .15)
+            forceMovingRight: Math.floor(virtualSquare.forceMovingLeft * forceRecoiled)
         })
 
     }
@@ -196,8 +199,15 @@ function assignEventListenersToSquares() {
         domPoolArray[i].addEventListener(
             'click', ({target}: {target: HTMLDivElement}) => {
                 console.log(virtualPool.state)
-                virtualPool.state[i].forceMovingLeft = 255
+                
                 virtualPool.state[i].forceMovingRight = 255
+                if ( i > 1 ) virtualPool.state[i-1].forceMovingRight = 128
+                if ( i > 2 ) virtualPool.state[i-2].forceMovingRight = 64
+
+                virtualPool.state[i].forceMovingLeft = 255
+                if ( i < domPoolArray.length - 2 ) virtualPool.state[i+1].forceMovingLeft = 128
+                if ( i < domPoolArray.length - 3 ) virtualPool.state[i+2].forceMovingLeft = 64
+                
                 if (target) {
                     target.style.backgroundColor = 'rgb(0,0,255)'
                 }
@@ -212,6 +222,8 @@ function updateDOMSquaresArray(virtualPoolProvided: VirtualPool) {
         const virtualSquare = virtualPoolProvided.state[i]
         const domSquare = domPoolArray[i]
         
+        // DO NOT ERASE.  THIS IS IF I WANT TO PURSUE BORDERS AGAIN
+
         // if (Math.abs(virtualSquare.forceMovingLeft - 255) < 200) {
         //     domSquare.style.borderLeft = `solid 1px rgb(${Math.abs(virtualSquare.forceMovingLeft - 255) - 50},${Math.abs(virtualSquare.forceMovingLeft - 255) - 50},255)`
         // } else {
@@ -270,3 +282,22 @@ function assignEventListenerToTimeToggleButton() {
 
 
 })
+
+
+// TO DO:
+
+// - Add a toggle to increase the "tail".  Each increase will "fatten" the initial touch 
+
+// - UX: Test the event trigger being on the down click
+
+// - Clean the damn code up, homie 
+
+// - Add an "infinite" button that will 
+
+// - Add a "confetti" mode 
+
+// - Have force trigger a div movement to simulate 3D
+
+// - Add a resolution toggle (Will need to populate html divs with JS to do that)
+
+// - Add a Speed toggle
