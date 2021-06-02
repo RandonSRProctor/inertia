@@ -197,7 +197,7 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
 function assignEventListenersToSquares() {
     for (let i = 0 ; i < domPoolArray.length ; i++) {
         domPoolArray[i].addEventListener(
-            'click', ({target}: {target: HTMLDivElement}) => {
+            'mouseover', ({target}: {target: HTMLDivElement}) => {
                 console.log(virtualPool.state)
                 
                 virtualPool.state[i].forceMovingRight = 255
@@ -301,3 +301,7 @@ function assignEventListenerToTimeToggleButton() {
 // - Add a resolution toggle (Will need to populate html divs with JS to do that)
 
 // - Add a Speed toggle
+
+// - Add a toggle between mouseover and click
+
+// - Design: Round corners of cells (first and last child)
