@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // DOM Manipulation
     function assignEventListenersToSquares() {
         for (let i = 0; i < domPoolArray.length; i++) {
-            domPoolArray[i].addEventListener('click', ({ target }) => {
+            domPoolArray[i].addEventListener('mouseover', ({ target }) => {
                 console.log(virtualPool.state);
                 virtualPool.state[i].forceMovingRight = 255;
                 if (i > 1)
@@ -200,3 +200,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // - Have force trigger a div movement to simulate 3D
 // - Add a resolution toggle (Will need to populate html divs with JS to do that)
 // - Add a Speed toggle
+// - Add a toggle between mouseover and click
+// - Design: Round corners of cells (first and last child)
