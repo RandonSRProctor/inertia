@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    let speedOfTime = 55
+    let speedOfTime = 30
     let presentTime = 0
     let stopTime = false
     let domPoolArray: any[]  = Array.from(document.querySelectorAll('.poolContainer div'))
