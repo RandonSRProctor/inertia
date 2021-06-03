@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let timeInterval = setInterval(moveTimeForward, speedOfTime);
     let isDark = false;
     assignEventListenerToTimeToggleButton();
+    assignEventListenerToSpeedButton();
     let virtualPool = new VirtualPool(domPoolArray);
     console.log(virtualPool);
     assignEventListenersToSquares();
@@ -161,6 +162,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // }
             const highestForce = Math.max(virtualSquare.forceMovingLeft, virtualSquare.forceMovingRight);
             domSquare.style.backgroundColor = `rgb(${Math.abs(highestForce - 255)},${Math.abs(highestForce - 255)},255)`;
+        }
+    }
+    function assignEventListenerToSpeedButton() {
+        const speedOfTimeButton = document.querySelector('.speedOfTimeToggle');
+        speedOfTimeButton === null || speedOfTimeButton === void 0 ? void 0 : speedOfTimeButton.addEventListener('click', changeSpeedOfTime);
+        function changeSpeedOfTime(event) {
+            if (speedOfTimeButton) {
+                const target = event.target;
+                clearInterval(timeInterval);
+                if (speedOfTime === 30) {
+                    speedOfTime = 60;
+                    speedOfTimeButton.innerHTML = 'Speed Up Time';
+                    target.style.backgroundColor = 'lightskyblue';
+                }
+                else if (speedOfTime === 60) {
+                    speedOfTime = 30;
+                    speedOfTimeButton.innerHTML = 'Slow Time';
+                    target.style.backgroundColor = 'white';
+                }
+                timeInterval = setInterval(moveTimeForward, speedOfTime);
+            }
         }
     }
     function assignEventListenerToTimeToggleButton() {

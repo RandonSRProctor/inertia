@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     assignEventListenerToTimeToggleButton()
+    assignEventListenerToSpeedButton()
 
     let virtualPool: VirtualPool = new VirtualPool(domPoolArray)
 
@@ -194,6 +195,10 @@ function determineEffectOfWork (virtualSquare: VirtualSquare) {
 
 // DOM Manipulation
 
+
+
+
+
 function assignEventListenersToSquares() {
     for (let i = 0 ; i < domPoolArray.length ; i++) {
         domPoolArray[i].addEventListener(
@@ -242,37 +247,56 @@ function updateDOMSquaresArray(virtualPoolProvided: VirtualPool) {
     }
 }
 
+function assignEventListenerToSpeedButton() {
 
+    const speedOfTimeButton: HTMLButtonElement | null = document.querySelector('.speedOfTimeToggle')
+
+    speedOfTimeButton?.addEventListener('click', changeSpeedOfTime)
+
+    function changeSpeedOfTime(event: Event) {
+        if (speedOfTimeButton) {
+            const target = event.target as HTMLButtonElement
+            clearInterval(timeInterval)
+            if (speedOfTime === 30) {
+                speedOfTime = 60
+                speedOfTimeButton.innerHTML = 'Speed Up Time'
+                target.style.backgroundColor = 'lightskyblue'
+            } else if (speedOfTime === 60) {
+                speedOfTime = 30
+                speedOfTimeButton.innerHTML = 'Slow Time'
+                target.style.backgroundColor = 'white'
+            }
+            timeInterval = setInterval(moveTimeForward, speedOfTime)
+        }
+    }
+}
 
 function assignEventListenerToTimeToggleButton() {
 
+    let timeToggleButton: HTMLButtonElement | null = document.querySelector('.timeToggle')
 
-
-        let timeToggleButton: HTMLButtonElement | null = document.querySelector('.timeToggle')
-
-    
-        timeToggleButton?.addEventListener('click', (event: Event) => {
-            const target = event.target as HTMLButtonElement
-            if (stopTime === false) {
-                stopTime = true
-                if (timeToggleButton) 
-                    {timeToggleButton.innerHTML = 'Unfreeze Time'}
-                if (target) {
-                    target.style.backgroundColor = 'lightskyblue'
-                }
-                console.log('You have stopped time.  Are you a wizard?')
-            } else {
-                stopTime = false
-                timeInterval = setInterval(moveTimeForward, speedOfTime)
-                if (timeToggleButton) {
-                    timeToggleButton.innerHTML = 'Freeze Time'
-                }
-                if (target) {
-                    target.style.backgroundColor = 'white'
-                }
-                console.log('Time has started again!')
+    timeToggleButton?.addEventListener('click', (event: Event) => {
+        const target = event.target as HTMLButtonElement
+        if (stopTime === false) {
+            stopTime = true
+            if (timeToggleButton) 
+                {timeToggleButton.innerHTML = 'Unfreeze Time'}
+            if (target) {
+                target.style.backgroundColor = 'lightskyblue'
             }
-        })
+            console.log('You have stopped time.  Are you a wizard?')
+        } else {
+            stopTime = false
+            timeInterval = setInterval(moveTimeForward, speedOfTime)
+            if (timeToggleButton) {
+                timeToggleButton.innerHTML = 'Freeze Time'
+            }
+            if (target) {
+                target.style.backgroundColor = 'white'
+            }
+            console.log('Time has started again!')
+        }
+    })
 
     
 
