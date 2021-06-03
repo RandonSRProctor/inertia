@@ -1,6 +1,6 @@
 import { VirtualPool } from './PoolModel.js';
 document.addEventListener('DOMContentLoaded', () => {
-    let speedOfTime = 30;
+    let speedOfTime = 40;
     let presentTime = 0;
     let stopTime = false;
     let domPoolArray = Array.from(document.querySelectorAll('.poolContainer div'));
@@ -171,13 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (speedOfTimeButton) {
                 const target = event.target;
                 clearInterval(timeInterval);
-                if (speedOfTime === 30) {
-                    speedOfTime = 60;
+                if (speedOfTime === 40) {
+                    speedOfTime = 65;
                     speedOfTimeButton.innerHTML = 'Speed Up Time';
                     target.style.backgroundColor = 'lightskyblue';
                 }
-                else if (speedOfTime === 60) {
-                    speedOfTime = 30;
+                else if (speedOfTime === 65) {
+                    speedOfTime = 40;
                     speedOfTimeButton.innerHTML = 'Slow Time';
                     target.style.backgroundColor = 'white';
                 }
@@ -215,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // TO DO:
 // - Add a toggle to increase the "tail".  Each increase will "fatten" the initial touch 
-// - UX: Test the event trigger being on the down click
 // - Clean the damn code up, homie 
 // - Add an "infinite" button that will 
 // - Add a "confetti" mode 

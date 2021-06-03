@@ -19,31 +19,48 @@ header {
 
 h1, h3 {
     margin: .5vh;
+    color: #222;
 }
+
+/* Pool */
 
 .poolContainer {
     height: 50vh;
-    border: solid #666 .2rem;
-    border-radius: .5rem;
     display: flex;
 }
 
 .poolContainer div {
     flex-grow: 1;
+    border-top: solid #666 .3rem;
+    border-bottom: solid #666 .3rem;
 }
 
+.poolContainer div:last-child {
+    border-right: solid #666 .3rem;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+.poolContainer div:first-child {
+    border-left: solid #666 .3rem;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+}
+
+
+/* Buttons */
 
 .buttonContainer {
     padding: 3vh 3vw;
     display: flex;
-    
 }
 
 .buttonContainer button {
+    flex-grow: 1;
     background: #fff;
     padding: 5vh 3vw;
-    flex-grow: 1;
     margin: 2vw;
-    border-radius: 5px;
+    border: solid #666 .2rem;
+    border-radius: .5rem;
     font-size: larger;
 }

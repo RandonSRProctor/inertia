@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    let speedOfTime = 30
+    let speedOfTime = 40
     let presentTime = 0
     let stopTime = false
     let domPoolArray: any[]  = Array.from(document.querySelectorAll('.poolContainer div'))
@@ -257,12 +257,12 @@ function assignEventListenerToSpeedButton() {
         if (speedOfTimeButton) {
             const target = event.target as HTMLButtonElement
             clearInterval(timeInterval)
-            if (speedOfTime === 30) {
-                speedOfTime = 60
+            if (speedOfTime === 40) {
+                speedOfTime = 65
                 speedOfTimeButton.innerHTML = 'Speed Up Time'
                 target.style.backgroundColor = 'lightskyblue'
-            } else if (speedOfTime === 60) {
-                speedOfTime = 30
+            } else if (speedOfTime === 65) {
+                speedOfTime = 40
                 speedOfTimeButton.innerHTML = 'Slow Time'
                 target.style.backgroundColor = 'white'
             }
@@ -311,8 +311,6 @@ function assignEventListenerToTimeToggleButton() {
 // TO DO:
 
 // - Add a toggle to increase the "tail".  Each increase will "fatten" the initial touch 
-
-// - UX: Test the event trigger being on the down click
 
 // - Clean the damn code up, homie 
 
